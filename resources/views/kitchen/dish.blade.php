@@ -22,22 +22,38 @@
     <!-- Main content -->
     <div class="content">
       <div class="card">
+        <div class="card-header">
+          <a href="/dish/create" class="btn btn-primary">New</a>
+        </div>
           <div class="card-body">
+                @if (session('message'))
+                  <div class="alert alert-success">
+                    {{ session('message') }}
+                  </div>
+                @endif
                 <table id="example1" class="table table-bordered table-hover">
                     <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                            <th>Column 3</th>
+                        <tr class="text-center">
+                            <th>Dish Name</th>
+                            <th>Category Name</th>
+                            {{-- <th>Image</th> --}}
+                            <th>Created At</th>
+                            <th>Updated At</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                            <td>Row 1 Data 2</td>
-                        </tr>
-                        <tr>
+                      @foreach ($dishes as $dish)
+                      <tr class="text-center">
+                        <td>{{$dish->name}}</td>
+                        <td>{{$dish->category->name}}</td>
+                        {{-- <td><img src="{{url('/images/'.$dish->image)}}" style="width:50px;height:50px;object-fit:contain"></td> --}}
+                        <td>{{$dish->created_at}}</td>
+                        <td>{{$dish->updated_at}}</td>
+                        <td><a href="/dish/{{$dish->id}}/edit" class="btn btn-secondary">Info</a></td>
+                      </tr>
+                      @endforeach
+                        {{-- <tr>
                             <td>Row 2 Data 1</td>
                             <td>Row 2 Data 2</td>
                             <td>Row 2 Data 2</td>
@@ -46,7 +62,7 @@
                             <td>Row 2 Data 1</td>
                             <td>Row 2 Data 1</td>
                             <td>Row 2 Data 2</td>
-                        </tr>
+                        </tr> --}}
                     </tbody>
                 </table>
           </div>
