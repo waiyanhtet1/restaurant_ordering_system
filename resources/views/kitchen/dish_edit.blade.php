@@ -6,14 +6,14 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Edit Your "{{$dish->name}}" Dish Information</h1>
+          <h4 class="m-0">Edit Your "{{$dish->name}}" Dish Information</h4>
         </div><!-- /.col -->
-        {{-- <div class="col-sm-6">
+        <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Starter Page</li>
+            <li class="breadcrumb-item"><a href="/dish">Home</a></li>
+            <li class="breadcrumb-item active">Edit Dish</li>
           </ol>
-        </div><!-- /.col --> --}}
+        </div><!-- /.col -->
       </div><!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
@@ -59,8 +59,8 @@
               class="ml-5">
             <input type="file" name="dish_image" accept="image/*" class="mt-1">
           </div>
-          <div class="form-group text-center mt-3">
-            <button class="btn btn-primary w-50" type="submit">Update</button>
+          <div class="form-group text-center mt-4">
+            <button class="btn btn-primary w-75" type="submit">Update</button>
           </div>
         </form>
       </div>

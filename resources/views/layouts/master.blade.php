@@ -70,13 +70,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <li class="nav-item menu-open">
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/dish" class="nav-link active">
+                <a href="/dish" class="nav-link {{Request::segment(1) == 'dish' ? 'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dishes</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/order" class="nav-link">
+                <a href="/order" class="nav-link {{Request::segment(1) == 'order' ?'active':''}}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Orders</p>
                 </a>
@@ -105,11 +105,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Main Footer -->
   <footer class="main-footer">
     <!-- To the right -->
-    <div class="float-right d-none d-sm-inline">
+    {{-- <div class="float-right d-none d-sm-inline">
       Anything you want
-    </div>
+    </div> --}}
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy;</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
@@ -139,8 +139,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     $(function () {
       $("#example1").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        "pageLength":10,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "pageLength":10, 
       }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
     });
   </script>

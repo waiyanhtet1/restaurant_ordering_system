@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DiskCreateRequest;
 use App\Models\Category;
 use App\Models\Dish;
+use App\Models\Order;
 use Illuminate\Http\Request;
 
 class DishController extends Controller
@@ -95,7 +96,7 @@ class DishController extends Controller
             $dish->image = $imageName;
         }
         $dish->save();
-        return redirect('/dish')->with('message','Dish was Updated successfully!');
+        return redirect('/dish')->with('message','Dish was updated successfully!');
     }
 
     /**
@@ -108,5 +109,31 @@ class DishController extends Controller
     {
         $dish->delete();
         return redirect('/dish')->with('message','Dish was deleted Successfully!');
+    }
+
+    // ords from kitchen panel
+    public function order(){
+        $rawstatus = config('res.orderstatus');
+        $status = array_flip($rawstatus);
+        $orders = Order::whereIn('status',[1,2])->get();
+        return view('kitchen.order',compact('orders','status'));
+    }
+
+    public function approve(Order $order){
+        $order->status = config('res.orderstatus.processing');
+        $order->save();
+        return redirect('order')->with('message','Order have been approved!');
+    }
+
+    public function cancel(Order $order){
+        $order->status = config('res.orderstatus.cancel');
+        $order->save();
+        return redirect('order')->with('message','Order have been rejected!');
+    }
+
+    public function ready(Order $order){
+        $order->status = config('res.orderstatus.ready');
+        $order->save();
+        return redirect('order')->with('message','Order have been Ready!');
     }
 }
